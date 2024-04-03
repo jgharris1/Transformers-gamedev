@@ -11,7 +11,7 @@ public class fpscontroller : MonoBehaviour
     public float gravity = 20.0f;
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
-    public float lookXLimit = 75.0f;
+    public float lookXLimit = 75.0f;//boo
     public Vector3 walkvelocity;
     public Vector3 momentum;
 
