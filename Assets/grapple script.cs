@@ -17,12 +17,13 @@ public class grapplescript : MonoBehaviour
     private Rigidbody parentrigid;
     private bool hitbool;
     private LineRenderer line;
+    public GameObject Barrel;
     // Start is called before the first frame update
     void Start()
     {
         parentbody = GetComponent<fpscontroller>();
         parentrigid = GetComponent<Rigidbody>();
-        line = GetComponent<LineRenderer>();
+        line = GetComponent<LineRenderer>(); 
     }
 
     // Update is called once per frame
@@ -57,10 +58,11 @@ public class grapplescript : MonoBehaviour
             {
                 Diff = (point - transform.position);
                 dist = Diff.magnitude;
-                line.SetPosition(1, transform.position);
+                line.SetPosition(1, Barrel.transform.position + Barrel.transform.forward * -0.45f + Barrel.transform.right * 0.05f);
                 if (Diff.magnitude > maxdist)
                 {
                     parentrigid.velocity -= Vector3.Dot(parentrigid.velocity, Diff.normalized) * Diff.normalized;
+                    parentrigid.velocity +=  0.05f * (dist * Diff.normalized);
                 }
 
             }

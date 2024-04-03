@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class fpscontroller : MonoBehaviour
 {
-    public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
@@ -64,11 +63,34 @@ public class fpscontroller : MonoBehaviour
         }
         else
         {
+
+            if (Input.GetKey("w"))
+            {
+                walkvelocity += transform.rotation * Vector3.forward;
+            }
+            if (Input.GetKey("a"))
+            {
+                walkvelocity += transform.rotation * Vector3.left;
+            }
+            if (Input.GetKey("s"))
+            {
+                walkvelocity += transform.rotation * Vector3.back;
+            }
+            if (Input.GetKey("d"))
+            {
+                walkvelocity += transform.rotation * Vector3.right;
+            }
+            if (Vector3.Project(rigid.velocity, walkvelocity.normalized).magnitude < runningSpeed)
+            {
+                rigid.velocity += walkvelocity * 5 * Time.deltaTime;
+            }
             if (Physics.Raycast(transform.position, Vector3.down, 1.1f))
             {
                 isgrounded = true;
             }
             momentum = rigid.velocity;
+
+
         }
         if (canMove)
         {
