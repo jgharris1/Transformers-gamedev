@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Transformers.sln"
+    "dotnet.defaultSolution": "Transformers-gamedev.sln"
 }

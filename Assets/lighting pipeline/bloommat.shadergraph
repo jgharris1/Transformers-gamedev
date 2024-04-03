@@ -428,13 +428,13 @@
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
     "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 2,
+    "overrideHLSLDeclaration": true,
+    "hlslDeclarationOverride": 3,
     "m_Hidden": false,
     "m_Value": {
-        "r": 19.07904052734375,
+        "r": 108.88726043701172,
         "g": 0.0,
-        "b": 128.0,
+        "b": 766.99609375,
         "a": 0.0
     },
     "isMainColor": false,
