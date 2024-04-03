@@ -12,7 +12,7 @@ public class grapplescript : MonoBehaviour
     public float perpVel;
     GameObject target;
     private bool held = false;
-    public Camera playerCamera;
+    public Camera playerCamera;//boo
     private fpscontroller parentbody;
     private Rigidbody parentrigid;
     private bool hitbool;
