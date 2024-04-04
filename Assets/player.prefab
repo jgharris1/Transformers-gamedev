@@ -288,14 +288,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4279693000333016701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb505601076b95d49a68ab60f646e87d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a73b34c0df894841bb5b180d2439f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   runningSpeed: 11.5
   jumpSpeed: 8
   gravity: 20
   playerCamera: {fileID: 1051901163822385705}
-  lookSpeed: 4
+  lookSpeed: 2
   lookXLimit: 75
   walkvelocity: {x: 0, y: 0, z: 0}
   momentum: {x: 0, y: 0, z: 0}
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4279693000333016701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b85fabf235443541a23fbe6d53ff9e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0616a26b153b72d439f77c6ce8e01a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Diff: {x: 0, y: 0, z: 0}
