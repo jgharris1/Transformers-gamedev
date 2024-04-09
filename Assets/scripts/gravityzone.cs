@@ -7,6 +7,7 @@ public class gravitysphere : MonoBehaviour
     private fpscontroller2 playerdata;
     public Vector3 vec;
     public bool sphere;
+    public float power;
     void Start()
     {
         playerdata = GameObject.FindGameObjectWithTag("Player").GetComponent<fpscontroller2>();
@@ -15,7 +16,11 @@ public class gravitysphere : MonoBehaviour
     {
         if (sphere)
         {
-            playerdata.applyGrav(sphere, transform.parent.transform.position);
+            playerdata.applyGrav(sphere, transform.parent.transform.position, power);
+        }
+        else
+        {
+            playerdata.applyGrav(sphere, vec, power);
         }
     }
 }

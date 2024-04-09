@@ -89,11 +89,15 @@ public class fpscontroller2 : MonoBehaviour
         }
     }
 
-    public void applyGrav(bool sphere, Vector3 vec)
+    public void applyGrav(bool sphere, Vector3 vec, float grav)
     {
         if (sphere)
         {
-            rigid.velocity += Vector3.Normalize(vec - transform.position) * Time.deltaTime * 9.81f;
+            rigid.velocity += Vector3.Normalize(vec - transform.position) * Time.deltaTime * grav;
+        }
+        else
+        {
+            rigid.velocity += Vector3.Normalize(vec) * Time.deltaTime * grav;
         }
     }
 
