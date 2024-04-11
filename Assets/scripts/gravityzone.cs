@@ -23,4 +23,9 @@ public class gravitysphere : MonoBehaviour
             playerdata.applyGrav(sphere, vec, power);
         }
     }
+
+    void OnTriggerExit(Collider collision)
+    {
+        playerdata.leaveGrav();
+    }
 }
