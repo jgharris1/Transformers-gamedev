@@ -554,7 +554,8 @@ MonoBehaviour:
   gravity: 20
   playerCamera: {fileID: 1051901163822385705}
   lookSpeed: 2
-  lookXLimit: 75
+  lookXLimit: 90
+  gravityRotation: 5
   walkvelocity: {x: 0, y: 0, z: 0}
   momentum: {x: 0, y: 0, z: 0}
   canMove: 1
