@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class fpscontroller2 : MonoBehaviour
 {
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
+    public float runningSpeed = 3f;
+    public float jetSpeed = 3f;
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90f;
@@ -37,14 +36,6 @@ public class fpscontroller2 : MonoBehaviour
         walkvelocity.Set(0f, 0f, 0f);
         if (isgrounded)
         {
-            if (Input.GetKey("q"))
-            {
-                transform.Rotate(Vector3.forward * 100 * Time.deltaTime);
-            }
-            if (Input.GetKey("e"))
-            {
-                transform.Rotate(Vector3.forward * -100 * Time.deltaTime);
-            }
             if (Input.GetKey("w"))
             {
                 walkvelocity += transform.rotation * Vector3.forward;
@@ -70,8 +61,8 @@ public class fpscontroller2 : MonoBehaviour
                 walkvelocity += transform.rotation * -Vector3.up;
             }
             walkvelocity = Vector3.Normalize(walkvelocity);
-            rigid.velocity += walkvelocity * Time.deltaTime * 10f;
-
+            rigid.velocity = walkvelocity * runningSpeed;
+            momentum = rigid.velocity;
         }
         else
         {
@@ -108,7 +99,12 @@ public class fpscontroller2 : MonoBehaviour
                 walkvelocity += transform.rotation * -Vector3.up;
             }
             walkvelocity = Vector3.Normalize(walkvelocity);
-            rigid.velocity += walkvelocity * Time.deltaTime * 10;
+            rigid.velocity += walkvelocity * Time.deltaTime * jetSpeed;
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                rigid.velocity -= Vector3.Normalize(rigid.velocity) / 10;
+            }
+            momentum = rigid.velocity;
         }
         
         if (Physics.Raycast(transform.position, transform.rotation * Vector3.down, 1.5f))
