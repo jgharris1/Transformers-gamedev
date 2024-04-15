@@ -5,18 +5,18 @@ using UnityEngine;
 public class grapplescript : MonoBehaviour
 {
     private Vector3 point;
-    public Vector3 Diff;
-    public float maxdist;
-    public float dist;
-    public Vector3 perpDir;
-    public float perpVel;
-    GameObject target;
+    private Vector3 Diff;
+    private float maxdist;
+    private float dist;
+    private GameObject target;
+    private Rigidbody targetrigid;
     private bool held = false;
     public Camera playerCamera;//boo
     private fpscontroller2 parentbody;
     private Rigidbody parentrigid;
     private bool hitbool;
     private LineRenderer line;
+    private Vector3 velChng;
     public GameObject Barrel;
     // Start is called before the first frame update
     void Start()
@@ -37,9 +37,11 @@ public class grapplescript : MonoBehaviour
                 point = hit.point;
                 maxdist = Vector3.Distance(point, transform.position);
                 target = hit.collider.gameObject;
+                targetrigid = target.GetComponent<Rigidbody>();
+                point = target.transform.InverseTransformPoint(point);
                 hitbool = true;
                 line.positionCount = 2;
-                line.SetPosition(0, point);
+                line.SetPosition(0, target.transform.TransformPoint(point));
                 line.SetPosition(1, transform.position);
             }
             held = true;
@@ -56,17 +58,22 @@ public class grapplescript : MonoBehaviour
             }
             else if (hitbool)// && !parentbody.isgrounded)
             {
-                Diff = (point - transform.position);
+                Diff = (target.transform.TransformPoint(point) - transform.position);
                 dist = Diff.magnitude;
                 line.SetPosition(1, Barrel.transform.position + Barrel.transform.forward * -0.45f + Barrel.transform.right * 0.05f);
+                line.SetPosition(0, target.transform.TransformPoint(point));
                 if (Diff.magnitude > maxdist)
                 {
-                    parentrigid.velocity -= Vector3.Dot(parentrigid.velocity, Diff.normalized) * Diff.normalized;
-                    parentrigid.velocity +=  0.05f * (dist * Diff.normalized);
+                    velChng.Set(0,0,0);
+                    velChng -= Vector3.Dot(parentrigid.velocity, Diff.normalized) * Diff.normalized;
+                    velChng +=  0.05f * (dist * Diff.normalized);
+                    parentrigid.velocity += velChng;
+                    if (targetrigid != null)
+                    {
+                        targetrigid.AddForceAtPosition(-velChng / Time.deltaTime, target.transform.TransformPoint(point));
+                    }
                 }
-
             }
         }
     }
-
 }
