@@ -21,6 +21,7 @@ public class fpscontroller2 : MonoBehaviour
     [HideInInspector]
     public bool canMove = true;
     public bool isgrounded = false;
+    public bool NoJet = false;
 
     void Start()
     {
@@ -64,7 +65,7 @@ public class fpscontroller2 : MonoBehaviour
             rigid.velocity = walkvelocity * runningSpeed;
             momentum = rigid.velocity;
         }
-        else
+        else if (!NoJet)
         {
             if (Input.GetKey("q"))
             {
@@ -116,7 +117,7 @@ public class fpscontroller2 : MonoBehaviour
             isgrounded = false;
         }
 
-        if (!isgrounded)
+        if (!isgrounded && !NoJet)
         {
             //rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             //playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
