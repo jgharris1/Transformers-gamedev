@@ -13,6 +13,8 @@ public class fpscontroller2 : MonoBehaviour
     public float gravityRotation = 5f;
     public Vector3 walkvelocity;
     public Vector3 momentum;
+    public Vector3 Dir;
+    public float jumpStrength;
 
     Rigidbody rigid;
     Vector3 moveDirection = Vector3.zero;
@@ -25,6 +27,7 @@ public class fpscontroller2 : MonoBehaviour
 
     void Start()
     {
+        Dir = new Vector3(0f, 0f, 0f);
         walkvelocity = new Vector3(0f, 0f, 0f);
         momentum = new Vector3(0f, 0f, 0f);
         rigid = GetComponent<Rigidbody>();
@@ -53,16 +56,12 @@ public class fpscontroller2 : MonoBehaviour
             {
                 walkvelocity += transform.rotation * Vector3.right;
             }
-            if (Input.GetKey("space"))
-            {
-                walkvelocity += transform.rotation * Vector3.up;
-            }
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                walkvelocity += transform.rotation * -Vector3.up;
-            }
             walkvelocity = Vector3.Normalize(walkvelocity);
-            rigid.velocity = walkvelocity * runningSpeed;
+            rigid.velocity = Vector3.Project(rigid.velocity, transform.rotation * Vector3.up) + walkvelocity * runningSpeed;
+            if (Input.GetKeyDown("space"))
+            {
+                rigid.velocity += transform.rotation * Vector3.up * jumpStrength;
+            }
             momentum = rigid.velocity;
         }
         else if (!NoJet)
