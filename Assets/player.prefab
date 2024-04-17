@@ -354,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4279693000333016701}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.51053, y: -0.7325867, z: 0.4434598, w: -0.07758441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -365,7 +365,7 @@ Transform:
   - {fileID: 3193710133248387063}
   - {fileID: 1382134772646719078}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 34.787, y: -223.61, z: -84.031}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1071655355875890180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,11 +378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0616a26b153b72d439f77c6ce8e01a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Diff: {x: 0, y: 0, z: 0}
-  maxdist: 0
-  dist: 5.7611647
-  perpDir: {x: 0, y: 0, z: 0}
-  perpVel: 0
   playerCamera: {fileID: 1051901163822385705}
   Barrel: {fileID: 5525816588572086704}
 --- !u!54 &-6728567531273001130
@@ -553,7 +548,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runningSpeed: 3
   jetSpeed: 3
-  gravity: 20
   playerCamera: {fileID: 1051901163822385705}
   lookSpeed: 2
   lookXLimit: 90
@@ -562,6 +556,7 @@ MonoBehaviour:
   momentum: {x: 0, y: 0, z: 0}
   canMove: 1
   isgrounded: 1
+  NoJet: 0
 --- !u!1 &4894509609660205254
 GameObject:
   m_ObjectHideFlags: 0
