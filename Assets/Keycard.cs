@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Keycard : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -20,8 +20,8 @@ public class Keycard : MonoBehaviour
             }
         }
     }
-}
-    /*
+}*/
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -38,4 +38,4 @@ public class Keycard : MonoBehaviour
             }
         }
     }
-}*/
+}
