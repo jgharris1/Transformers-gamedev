@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class fpscontroller2 : MonoBehaviour
@@ -17,6 +18,8 @@ public class fpscontroller2 : MonoBehaviour
     public float jumpStrength;
     public bool underGrav;
 
+    public TextMeshProUGUI Keycardtext;
+
     Rigidbody rigid;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -25,6 +28,7 @@ public class fpscontroller2 : MonoBehaviour
     public bool canMove = true;
     public bool isgrounded = false;
     public bool NoJet = false;
+    public bool hasKeycard = false;
 
     void Start()
     {
@@ -37,7 +41,14 @@ public class fpscontroller2 : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
+        if(hasKeycard == true){
+            Keycardtext.text = "Keycard Gathered get to teleporter";
+        }
+        if(hasKeycard == false){
+            Keycardtext.text = "Keycard needed";
+
+        }
         /*walkvelocity.Set(0f, 0f, 0f);
         if (isgrounded)
         {

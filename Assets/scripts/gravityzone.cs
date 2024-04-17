@@ -9,6 +9,7 @@ public class gravitysphere : MonoBehaviour
     public bool sphere;
     public float power;
     private gravrecv receiver;
+    private gravrecv itemreceiver;
     void OnTriggerStay(Collider collision)
     {
         if (sphere)
