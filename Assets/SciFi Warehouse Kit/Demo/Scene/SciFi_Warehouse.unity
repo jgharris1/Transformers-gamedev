@@ -25455,7 +25455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349b9bbd81103e24eabfebac4596ae9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayedTeleport: 0
+  delayedTeleport: 1
   teleportTime: 3
   playerController: {fileID: 0}
   teleportSound: {fileID: 1186636500}
