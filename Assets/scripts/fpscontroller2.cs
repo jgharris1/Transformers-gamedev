@@ -10,7 +10,7 @@ public class fpscontroller2 : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90f;
-    public float gravityRotation = 5f;
+    public float gravityRotation = 0f;
     public Vector3 walkvelocity;
     public Vector3 momentum;
     public Vector3 Dir;
@@ -22,7 +22,7 @@ public class fpscontroller2 : MonoBehaviour
 
     [HideInInspector]
     public bool canMove = true;
-    public bool isgrounded = false;
+    public bool isgrounded = true;
     public bool NoJet = false;
 
     void Start()

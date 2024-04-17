@@ -66,7 +66,7 @@ public class grapplescript : MonoBehaviour
                 {
                     velChng.Set(0,0,0);
                     velChng -= Vector3.Dot(parentrigid.velocity, Diff.normalized) * Diff.normalized;
-                    velChng +=  0.05f * (dist * Diff.normalized);
+                    velChng +=  0.25f * (dist * Diff.normalized);
                     parentrigid.velocity += velChng;
                     if (targetrigid != null)
                     {
