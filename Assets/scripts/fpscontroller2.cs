@@ -9,7 +9,7 @@ public class fpscontroller2 : MonoBehaviour
     public float runningSpeed = 3f;
     public float jetSpeed = 3f;
     public Camera playerCamera;
-    public float lookSpeed = 2.0f;
+    public float lookSpeed = 4.0f;
     public float lookXLimit = 90f;
     public float gravityRotation = 5f;
     public Vector3 walkvelocity;
@@ -24,11 +24,15 @@ public class fpscontroller2 : MonoBehaviour
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
+    float rotationY = 0;
+
     [HideInInspector]
     public bool canMove = true;
     public bool isgrounded = false;
-    public bool NoJet = false;
+    public bool NoJet = true;
     public bool hasKeycard = false;
+
+    public bool teleporterReached = false;
 
     void Start()
     {
@@ -43,12 +47,22 @@ public class fpscontroller2 : MonoBehaviour
     void Update()
     {   
         if(hasKeycard == true){
-            Keycardtext.text = "Keycard Gathered get to teleporter";
+            if(teleporterReached == false)
+            {
+                Keycardtext.text = "Keycard Gathered get to teleporter";
+            }
+            else
+            {
+                Keycardtext.text = "teleporter unlocked!";
+            }
+            
         }
         if(hasKeycard == false){
             Keycardtext.text = "Keycard needed";
 
         }
+
+
         /*walkvelocity.Set(0f, 0f, 0f);
         if (isgrounded)
         {
@@ -142,6 +156,8 @@ public class fpscontroller2 : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
         underGrav = false;*/
+
+
         // Calculate movement direction based on player input
         Vector3 moveDirection = Vector3.zero;
         if (isgrounded)
@@ -173,6 +189,7 @@ public class fpscontroller2 : MonoBehaviour
             float mouseY = -Input.GetAxis("Mouse Y") * lookSpeed;
 
             // Rotate the player horizontally
+
             transform.Rotate(Vector3.up * mouseX);
 
             // Rotate the player camera vertically
@@ -231,6 +248,7 @@ public class fpscontroller2 : MonoBehaviour
 
     public void rotGround(Vector3 vec)
     {
+        // Tested
         Quaternion orientation = Quaternion.FromToRotation(-transform.up, vec) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, orientation, gravityRotation * Time.deltaTime);
         underGrav = true;
@@ -238,6 +256,7 @@ public class fpscontroller2 : MonoBehaviour
 
     public void leaveGrav()
     {
+        // Tested
         transform.rotation = playerCamera.transform.rotation;
         playerCamera.transform.localRotation = Quaternion.identity;
     }

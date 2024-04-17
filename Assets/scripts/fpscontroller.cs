@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class fpscontroller : MonoBehaviour
 {
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
+    public float runningSpeed = 3f;
+    public float jumpSpeed = 3.0f;
     public float gravity = 20.0f;
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
-    public float lookXLimit = 75.0f;//boo
+    public float lookXLimit = 75.0f; //boo
     public Vector3 walkvelocity;
     public Vector3 momentum;
 
@@ -94,6 +94,7 @@ public class fpscontroller : MonoBehaviour
         }
         if (canMove)
         {
+            // Tested
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
