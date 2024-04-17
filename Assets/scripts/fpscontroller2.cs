@@ -38,7 +38,7 @@ public class fpscontroller2 : MonoBehaviour
 
     void Update()
     {
-        walkvelocity.Set(0f, 0f, 0f);
+        /*walkvelocity.Set(0f, 0f, 0f);
         if (isgrounded)
         {
             if (Input.GetKey("w"))
@@ -130,7 +130,92 @@ public class fpscontroller2 : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
-        underGrav = false;
+        underGrav = false;*/
+        // Calculate movement direction based on player input
+        Vector3 moveDirection = Vector3.zero;
+        if (isgrounded)
+        {
+            moveDirection = GetInputDirection(true);
+            rigid.velocity = Vector3.Project(rigid.velocity, transform.rotation * Vector3.up) + moveDirection * runningSpeed;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rigid.velocity += transform.rotation * Vector3.up * jumpStrength;
+            }
+        }
+        else if (!NoJet)
+        {
+            moveDirection = GetInputDirection(false);
+            rigid.velocity += moveDirection * Time.deltaTime * jetSpeed;
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                rigid.velocity -= Vector3.Normalize(rigid.velocity) / 10;
+            }
+        }
+
+        // Check if the player is grounded
+        isgrounded = Physics.Raycast(transform.position, transform.rotation * Vector3.down, 1.5f);
+        if (!isgrounded && !NoJet)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
+            float mouseY = -Input.GetAxis("Mouse Y") * lookSpeed;
+
+            // Rotate the player horizontally
+            transform.Rotate(Vector3.up * mouseX);
+
+            // Rotate the player camera vertically
+            rotationX += mouseY;
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        }
+        else
+        {
+            // Rotate the player and camera based on mouse input
+            float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
+            float mouseY = -Input.GetAxis("Mouse Y") * lookSpeed;
+
+            transform.Rotate(Vector3.up * mouseX);
+
+            rotationX += mouseY;
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        }
+    }
+
+    Vector3 GetInputDirection(bool grnd)
+    {
+        Vector3 inputDirection = Vector3.zero;
+
+        if (Input.GetKey("w"))
+        {
+            inputDirection += transform.forward;
+        }
+        if (Input.GetKey("a"))
+        {
+            inputDirection -= transform.right;
+        }
+        if (Input.GetKey("s"))
+        {
+            inputDirection -= transform.forward;
+        }
+        if (Input.GetKey("d"))
+        {
+            inputDirection += transform.right;
+        }
+        if (!grnd)
+        {
+
+            if (Input.GetKey("space"))
+            {
+                inputDirection += transform.up;
+            }
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                inputDirection -= transform.up;
+            }
+        }
+        return Vector3.Normalize(inputDirection);
     }
 
     public void rotGround(Vector3 vec)
