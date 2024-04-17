@@ -15,6 +15,7 @@ public class fpscontroller2 : MonoBehaviour
     public Vector3 momentum;
     public Vector3 Dir;
     public float jumpStrength;
+    public bool underGrav;
 
     Rigidbody rigid;
     Vector3 moveDirection = Vector3.zero;
@@ -116,7 +117,7 @@ public class fpscontroller2 : MonoBehaviour
             isgrounded = false;
         }
 
-        if (!isgrounded && !NoJet)
+        if (!isgrounded && !NoJet  && underGrav)
         {
             //rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             //playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -129,26 +130,14 @@ public class fpscontroller2 : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+        underGrav = false;
     }
 
-    public void applyGrav(bool sphere, Vector3 vec, float grav)
-    {
-        if (sphere)
-        {
-            rigid.velocity += Vector3.Normalize(vec - transform.position) * Time.deltaTime * grav;
-            rotGround(Vector3.Normalize(vec - transform.position));
-        }
-        else
-        {
-            rigid.velocity += Vector3.Normalize(vec) * Time.deltaTime * grav;
-            rotGround(vec);
-        }
-    }
-
-    private void rotGround(Vector3 vec)
+    public void rotGround(Vector3 vec)
     {
         Quaternion orientation = Quaternion.FromToRotation(-transform.up, vec) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, orientation, gravityRotation * Time.deltaTime);
+        underGrav = true;
     }
 
     public void leaveGrav()

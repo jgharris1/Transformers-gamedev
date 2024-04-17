@@ -18,6 +18,9 @@ public class grapplescript : MonoBehaviour
     private LineRenderer line;
     private Vector3 velChng;
     public GameObject Barrel;
+    public bool pullGrapple;
+    public float pullGrappleStrength;
+    public float maxRange = 20;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +35,7 @@ public class grapplescript : MonoBehaviour
         if (Input.GetMouseButton(0) && !held)
         {
             RaycastHit hit;
-            if (Physics.Raycast(playerCamera.transform.position, transform.rotation * playerCamera.transform.localRotation * Vector3.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(playerCamera.transform.position, transform.rotation * playerCamera.transform.localRotation * Vector3.forward, out hit, maxRange))
             {
                 point = hit.point;
                 maxdist = Vector3.Distance(point, transform.position);
@@ -43,6 +46,10 @@ public class grapplescript : MonoBehaviour
                 line.positionCount = 2;
                 line.SetPosition(0, target.transform.TransformPoint(point));
                 line.SetPosition(1, transform.position);
+                if (pullGrapple)
+                {
+                    parentrigid.velocity -= parentrigid.velocity;
+                }
             }
             held = true;
         }
@@ -56,24 +63,45 @@ public class grapplescript : MonoBehaviour
                 held = false;
                 line.positionCount = 0;
             }
-            else if (hitbool)// && !parentbody.isgrounded)
+            else if (hitbool)
             {
-                Diff = (target.transform.TransformPoint(point) - transform.position);
-                dist = Diff.magnitude;
-                line.SetPosition(1, Barrel.transform.position + Barrel.transform.forward * -0.45f + Barrel.transform.right * 0.05f);
-                line.SetPosition(0, target.transform.TransformPoint(point));
-                if (Diff.magnitude > maxdist)
+                if (pullGrapple)
                 {
-                    velChng.Set(0,0,0);
-                    velChng -= Vector3.Dot(parentrigid.velocity, Diff.normalized) * Diff.normalized;
-                    velChng +=  0.05f * (dist * Diff.normalized);
-                    parentrigid.velocity += velChng;
-                    if (targetrigid != null)
+                    Diff = (target.transform.TransformPoint(point) - transform.position);
+                    dist = Diff.magnitude;
+                    line.SetPosition(1, Barrel.transform.position + Barrel.transform.forward * -0.45f + Barrel.transform.right * 0.05f);
+                    line.SetPosition(0, target.transform.TransformPoint(point));
+                    if (Diff.magnitude > maxdist)
                     {
-                        targetrigid.AddForceAtPosition(-velChng / Time.deltaTime, target.transform.TransformPoint(point));
+                        velChng.Set(0, 0, 0);
+                        velChng = Diff.normalized * pullGrappleStrength * Time.deltaTime;
+                        parentrigid.velocity += velChng;
+                        if (targetrigid != null)
+                        {
+                            targetrigid.AddForceAtPosition(-velChng / Time.deltaTime, target.transform.TransformPoint(point));
+                        }
+                    }
+                }
+                else
+                {
+                    Diff = (target.transform.TransformPoint(point) - transform.position);
+                    dist = Diff.magnitude;
+                    line.SetPosition(1, Barrel.transform.position + Barrel.transform.forward * -0.45f + Barrel.transform.right * 0.05f);
+                    line.SetPosition(0, target.transform.TransformPoint(point));
+                    if (Diff.magnitude > maxdist)
+                    {
+                        velChng.Set(0, 0, 0);
+                        velChng -= Vector3.Dot(parentrigid.velocity, Diff.normalized) * Diff.normalized;
+                        velChng += 0.05f * (dist * Diff.normalized);
+                        parentrigid.velocity += velChng;
+                        if (targetrigid != null)
+                        {
+                            targetrigid.AddForceAtPosition(-velChng / Time.deltaTime, target.transform.TransformPoint(point));
+                        }
                     }
                 }
             }
         }
+
     }
 }

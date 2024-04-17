@@ -8,24 +8,34 @@ public class gravitysphere : MonoBehaviour
     public Vector3 vec;
     public bool sphere;
     public float power;
-    void Start()
-    {
-        playerdata = GameObject.FindGameObjectWithTag("Player").GetComponent<fpscontroller2>();
-    }
+    private gravrecv receiver;
     void OnTriggerStay(Collider collision)
     {
         if (sphere)
         {
-            playerdata.applyGrav(sphere, transform.parent.transform.position, power);
+            receiver = collision.transform.GetComponent<gravrecv>();
+            if (receiver != null)
+            {
+                receiver.applyGrav(sphere, transform.parent.transform.position, power);
+            }
+            
         }
         else
         {
-            playerdata.applyGrav(sphere, vec, power);
+            receiver = collision.transform.GetComponent<gravrecv>();
+            if (receiver != null)
+            {
+                receiver.applyGrav(sphere, vec, power);
+            }
         }
     }
 
     void OnTriggerExit(Collider collision)
     {
-        playerdata.leaveGrav();
+        receiver = collision.transform.GetComponent<gravrecv>();
+        if (receiver != null)
+        {
+            receiver.leaveGrav();
+        }
     }
 }
