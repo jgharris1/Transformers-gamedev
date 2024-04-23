@@ -35,7 +35,7 @@ public class teleporter : MonoBehaviour
 	private float curTeleportTime;
 	//private bool checking if you entered the trigger
 	private bool inside = false;
-    public fpscontroller2 playerController;
+    public Fpscontroller3 playerController;
 
 	//check to wait for arrived object to leave before enabling teleporation again
 	[HideInInspector]
@@ -73,13 +73,15 @@ public class teleporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+		Debug.Log("Player entered");
+		Debug.Log(other.tag);
         if (other.CompareTag("Player"))
         {
             inside = true;
-            
+            Debug.Log("Player entered");
             // Get the fpscontroller2 component from the player
             //fpscontroller2 
-            playerController = other.GetComponent<fpscontroller2>();
+            playerController = other.GetComponent<Fpscontroller3>();
             
         }
     }
@@ -91,7 +93,7 @@ public class teleporter : MonoBehaviour
             
             // Get the fpscontroller2 component from the player
             //fpscontroller2 
-            playerController = other.GetComponent<fpscontroller2>();
+            playerController = other.GetComponent<Fpscontroller3>();
             
         }
     }
