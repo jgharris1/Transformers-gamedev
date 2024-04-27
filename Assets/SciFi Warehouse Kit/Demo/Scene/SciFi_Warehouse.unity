@@ -4776,7 +4776,7 @@ MonoBehaviour:
   nogravSpeed: 4
   jetForce: 3
   jetCooldown: 0.5
-  JetPack: 0
+  JetPack: 1
   noGrav: 1
   jumpKey: 32
   DescendKey: 304
@@ -4803,7 +4803,7 @@ MonoBehaviour:
   playerCamera: {fileID: 1122461518}
   Barrel: {fileID: 1468451650}
   pullGrapple: 1
-  pullGrappleStrength: 1
+  pullGrappleStrength: 5
   maxRange: 100
 --- !u!114 &245199981
 MonoBehaviour:
@@ -24896,7 +24896,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

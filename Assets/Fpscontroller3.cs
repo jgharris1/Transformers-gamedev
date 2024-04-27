@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Callbacks;
+//using UnityEditor.Callbacks;
 using UnityEngine;
 //using UnityEngine.Rendering;
 using TMPro;
@@ -61,6 +61,12 @@ public class Fpscontroller3 : MonoBehaviour
         hasKeycard = false;
     }
 
+    void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -78,7 +84,7 @@ public class Fpscontroller3 : MonoBehaviour
         if(hasKeycard == true){
             if(teleporterReached == false)
             {
-                Keycardtext.text = "Keycard Gathered get to teleporter";
+                Keycardtext.text = "Keycard gathered get to exit teleporter NOOOW!";
             }
             else
             {
