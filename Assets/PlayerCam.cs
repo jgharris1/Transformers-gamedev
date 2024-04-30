@@ -65,6 +65,7 @@ public class PlayerCam : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, transform.rotation.z);
 
     // Set camera's world rotation to match the player's orientation
         transform.parent.rotation =  Fpscontroller3.Instance.transform.rotation;

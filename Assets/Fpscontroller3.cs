@@ -132,8 +132,9 @@ public class Fpscontroller3 : MonoBehaviour
     }
     void FixedUpdate(){
         MovePlayer();
+
         orientation.localRotation = transform.rotation;
-        camerapos.localRotation = transform.rotation;
+        //camerapos.localRotation = transform.rotation;
         if(isRotating==false){
             rb.freezeRotation = true;
         }
@@ -143,8 +144,11 @@ public class Fpscontroller3 : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 forward = orientation.forward;
-        Vector3 right = orientation.right;
+        // Vector3 forward = orientation.forward;
+        // Vector3 right = orientation.right;
+
+        Vector3 forward = PlayerCam.Instance.transform.forward;
+        Vector3 right = PlayerCam.Instance.transform.right;
 
         // Adjust input directions based on the player's orientation
         
