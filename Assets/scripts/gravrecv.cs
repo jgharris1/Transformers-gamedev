@@ -17,7 +17,7 @@ public class gravrecv : MonoBehaviour
             rigid.velocity += Vector3.Normalize(vec - transform.position) * Time.deltaTime * grav;
             if (tag == "Player")
             {
-                GetComponent<fpscontroller2>().rotGround(Vector3.Normalize(vec - transform.position));
+                GetComponent<Fpscontroller3>().rotGround(Vector3.Normalize(vec - transform.position));
             }
         }
         else
@@ -25,7 +25,7 @@ public class gravrecv : MonoBehaviour
             rigid.velocity += Vector3.Normalize(vec) * Time.deltaTime * grav;
             if (tag == "Player")
             {
-                GetComponent<fpscontroller2>().rotGround(vec);
+                GetComponent<Fpscontroller3>().rotGround(vec);
             }
         }
     }
@@ -35,7 +35,7 @@ public class gravrecv : MonoBehaviour
     {
         if (tag == "Player")
         {
-            GetComponent<fpscontroller2>().leaveGrav();
+            GetComponent<Fpscontroller3>().leaveGrav();
         }
     }
 }

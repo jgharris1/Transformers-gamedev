@@ -22,6 +22,9 @@ public class Fpscontroller3 : MonoBehaviour
     public float nogravSpeed;
     public float jetForce;
     public float jetCooldown;
+    public float playerPanSpeed;
+
+    public float gravityRotation = 5f;
 
     bool readyToJet;
     public bool JetPack;
@@ -30,6 +33,9 @@ public class Fpscontroller3 : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode DescendKey = KeyCode.LeftShift;
+
+    public KeyCode PanLeft = KeyCode.Q;
+    public KeyCode PanRight = KeyCode.E;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -42,6 +48,7 @@ public class Fpscontroller3 : MonoBehaviour
     public TextMeshProUGUI Keycardtext;
 
     public Transform orientation;
+    public Transform camerapos;
 
     float horizontalInput;
     float verticalInput;
@@ -50,16 +57,41 @@ public class Fpscontroller3 : MonoBehaviour
 
     Rigidbody rb;
 
+    private static Fpscontroller3 instance;
 
-    // Start is called before the first frame update
-    void Start()
+    public static Fpscontroller3 Instance
     {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<Fpscontroller3>();
+            }
+
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
         readyToJet = true;
         hasKeycard = false;
     }
+    // Start is called before the first frame update
+    // void Start()
+    // {
+        
+    // }
 
     void OnDestroy()
     {
@@ -100,12 +132,34 @@ public class Fpscontroller3 : MonoBehaviour
     }
     void FixedUpdate(){
         MovePlayer();
+        orientation.localRotation = transform.rotation;
+        camerapos.localRotation = transform.rotation;
+        if(isRotating==false){
+            rb.freezeRotation = true;
+        }
     }
     
     private void MyInput(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
+        Vector3 forward = orientation.forward;
+        Vector3 right = orientation.right;
+
+        // Adjust input directions based on the player's orientation
+        
+
+
+
+        //Pan
+        if (Input.GetKey(PanLeft))
+        {    
+            RotateCharacterAndCamera(0, 0, playerPanSpeed * Time.deltaTime);
+        }
+        if (Input.GetKey(PanRight))
+        {
+            RotateCharacterAndCamera(0, 0, -playerPanSpeed * Time.deltaTime);
+        }
         //Jump
         if(Input.GetKeyDown(jumpKey) && readyToJump && grounded && !noGrav){
             readyToJump = false;
@@ -133,9 +187,11 @@ public class Fpscontroller3 : MonoBehaviour
         }
     }
 
-    private void MovePlayer(){
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
+    private void MovePlayer()
+    {
+        //moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
+
         if(grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
@@ -183,4 +239,62 @@ public class Fpscontroller3 : MonoBehaviour
     private void ResetJet(){
         readyToJet = true;
     }
+    public void rotGround(Vector3 vec)
+    {
+        // Tested
+        Quaternion orientation = Quaternion.FromToRotation(-transform.up, vec) * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, orientation, gravityRotation * Time.deltaTime);
+        noGrav = true;
+    }
+
+    public void leaveGrav()
+    {
+        // Tested
+        transform.rotation = PlayerCam.Instance.transform.rotation;
+        PlayerCam.Instance.transform.localRotation = Quaternion.identity;
+    }
+    
+
+
+private bool isRotating = false;
+
+
+private void RotateCharacterAndCamera(float angleX, float angleY, float angleZ)
+
+{
+
+    if (isRotating)
+
+    {
+
+        return;
+
+    }
+
+    //rb.freezeRotation = false;
+    isRotating = true;
+
+
+    transform.Rotate(0, angleY, angleZ);
+
+    
+
+    // PlayerCam.Instance.transform.localRotation = transform.rotation;
+
+    rb.MoveRotation(transform.rotation);
+
+
+    Invoke(nameof(ResetRotationFlag), 0.2f);
+
+}
+
+
+private void ResetRotationFlag()
+
+{
+    
+    isRotating = false;
+    //transform.rotation = Quaternion.Euler(0,0, transform.rotation.z);
+
+}
 }
