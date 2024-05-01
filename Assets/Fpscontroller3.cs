@@ -30,6 +30,8 @@ public class Fpscontroller3 : MonoBehaviour
     public bool JetPack;
     public bool noGrav;
 
+    [Header("Leave Gravity")]
+
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode DescendKey = KeyCode.LeftShift;
@@ -49,6 +51,7 @@ public class Fpscontroller3 : MonoBehaviour
 
     public Transform orientation;
     public Transform camerapos;
+    public Transform capsule;
 
     float horizontalInput;
     float verticalInput;
@@ -147,8 +150,7 @@ public class Fpscontroller3 : MonoBehaviour
         // Vector3 forward = orientation.forward;
         // Vector3 right = orientation.right;
 
-        Vector3 forward = PlayerCam.Instance.transform.forward;
-        Vector3 right = PlayerCam.Instance.transform.right;
+        
 
         // Adjust input directions based on the player's orientation
         
@@ -193,8 +195,11 @@ public class Fpscontroller3 : MonoBehaviour
 
     private void MovePlayer()
     {
+        Vector3 forward = orientation.forward;//transform.forward;//PlayerCam.Instance.transform.forward;
+        Vector3 right = orientation.right;//transform.right;//PlayerCam.Instance.transform.right;
         //moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
+        //moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
+        moveDirection = (forward * verticalInput + right * horizontalInput);//.normalized;
 
         if(grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
@@ -279,7 +284,7 @@ private void RotateCharacterAndCamera(float angleX, float angleY, float angleZ)
     isRotating = true;
 
 
-    transform.Rotate(0, angleY, angleZ);
+    transform.Rotate(0, 0, angleZ);
 
     
 
