@@ -4773,12 +4773,15 @@ MonoBehaviour:
   jumpForce: 3
   JumpCooldown: 0.25
   airMultiplier: 0.4
-  nogravSpeed: 4
+  lowgravSpeed: 0
   jetForce: 3
   jetCooldown: 0.5
-  playerPanSpeed: 200
-  gravityRotation: 100
   JetPack: 1
+  lowGrav: 0
+  leaveGravBool: 0
+  nogravSpeed: 4
+  gravityRotation: 100
+  playerPanSpeed: 200
   noGrav: 1
   jumpKey: 32
   DescendKey: 304
@@ -4793,6 +4796,7 @@ MonoBehaviour:
   Keycardtext: {fileID: 713545527}
   orientation: {fileID: 1247054268}
   camerapos: {fileID: 432984528}
+  capsule: {fileID: 1625956497}
 --- !u!114 &245199980
 MonoBehaviour:
   m_ObjectHideFlags: 0
