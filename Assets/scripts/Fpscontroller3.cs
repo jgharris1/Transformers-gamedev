@@ -18,7 +18,7 @@ public class Fpscontroller3 : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
-    [Header("NoGravity Movement")]
+    [Header("LowGravity Movement")]
     public float lowgravSpeed;
     public float jetForce;
     public float jetCooldown;
@@ -27,7 +27,7 @@ public class Fpscontroller3 : MonoBehaviour
     public bool lowGrav;
 
     [Header("Leave Gravity")]
-    public bool leaveGravBool;
+    // public bool leaveGravBool;
     public float nogravSpeed;
     public float gravityRotation = 5f;
 
@@ -74,7 +74,7 @@ public class Fpscontroller3 : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<Fpscontroller3>();
+                instance = FindFirstObjectByType<Fpscontroller3>();
             }
 
             return instance;
