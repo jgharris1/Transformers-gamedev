@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 8862890181748180849}
   - component: {fileID: 5318181406089385374}
   - component: {fileID: 834160745752771566}
+  - component: {fileID: 5753098103464962465}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -380,6 +381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1051901163822385705}
   Barrel: {fileID: 5525816588572086704}
+  pullGrapple: 1
+  pullGrappleStrength: 10
+  maxRange: 100
 --- !u!54 &-6728567531273001130
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -546,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e33bb76ac8b5eb479ac863197a5836b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runningSpeed: 3
+  runningSpeed: 11.5
   jetSpeed: 3
   playerCamera: {fileID: 1051901163822385705}
   lookSpeed: 2
@@ -554,9 +558,24 @@ MonoBehaviour:
   gravityRotation: 5
   walkvelocity: {x: 0, y: 0, z: 0}
   momentum: {x: 0, y: 0, z: 0}
+  Dir: {x: 0, y: 0, z: 0}
+  jumpStrength: 3
+  underGrav: 0
   canMove: 1
-  isgrounded: 1
+  isgrounded: 0
   NoJet: 0
+--- !u!114 &5753098103464962465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279693000333016701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7313787cb3332624a9f809137d76aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4894509609660205254
 GameObject:
   m_ObjectHideFlags: 0

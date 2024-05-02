@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class fpscontroller2 : MonoBehaviour
@@ -8,22 +9,35 @@ public class fpscontroller2 : MonoBehaviour
     public float runningSpeed = 3f;
     public float jetSpeed = 3f;
     public Camera playerCamera;
-    public float lookSpeed = 2.0f;
+    public float lookSpeed = 4.0f;
     public float lookXLimit = 90f;
     public float gravityRotation = 0f;
     public Vector3 walkvelocity;
     public Vector3 momentum;
     public Vector3 Dir;
     public float jumpStrength;
+    public bool underGrav;
+
+    public TextMeshProUGUI Keycardtext;
 
     Rigidbody rigid;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
+    float rotationY = 0;
+
     [HideInInspector]
     public bool canMove = true;
+<<<<<<< HEAD
     public bool isgrounded = true;
     public bool NoJet = false;
+=======
+    public bool isgrounded = false;
+    public bool NoJet = true;
+    public bool hasKeycard = false;
+
+    public bool teleporterReached = false;
+>>>>>>> gavinLevel
 
     void Start()
     {
@@ -36,8 +50,25 @@ public class fpscontroller2 : MonoBehaviour
     }
 
     void Update()
-    {
-        walkvelocity.Set(0f, 0f, 0f);
+    {   
+        if(hasKeycard == true){
+            if(teleporterReached == false)
+            {
+                Keycardtext.text = "Keycard Gathered get to teleporter";
+            }
+            else
+            {
+                Keycardtext.text = "teleporter unlocked!";
+            }
+            
+        }
+        if(hasKeycard == false){
+            Keycardtext.text = "Keycard needed";
+
+        }
+
+
+        /*walkvelocity.Set(0f, 0f, 0f);
         if (isgrounded)
         {
             if (Input.GetKey("w"))
@@ -116,7 +147,7 @@ public class fpscontroller2 : MonoBehaviour
             isgrounded = false;
         }
 
-        if (!isgrounded && !NoJet)
+        if (!isgrounded && !NoJet  && underGrav)
         {
             //rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             //playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -129,30 +160,108 @@ public class fpscontroller2 : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
-    }
+        underGrav = false;*/
 
-    public void applyGrav(bool sphere, Vector3 vec, float grav)
-    {
-        if (sphere)
+
+        // Calculate movement direction based on player input
+        Vector3 moveDirection = Vector3.zero;
+        if (isgrounded)
         {
-            rigid.velocity += Vector3.Normalize(vec - transform.position) * Time.deltaTime * grav;
-            rotGround(Vector3.Normalize(vec - transform.position));
+            moveDirection = GetInputDirection(true);
+            rigid.velocity = Vector3.Project(rigid.velocity, transform.rotation * Vector3.up) + moveDirection * runningSpeed;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rigid.velocity += transform.rotation * Vector3.up * jumpStrength;
+            }
+        }
+        else if (!NoJet)
+        {
+            moveDirection = GetInputDirection(false);
+            rigid.velocity += moveDirection * Time.deltaTime * jetSpeed;
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                rigid.velocity -= Vector3.Normalize(rigid.velocity) / 10;
+            }
+        }
+
+        // Check if the player is grounded
+        isgrounded = Physics.Raycast(transform.position, transform.rotation * Vector3.down, 1.5f);
+        if (!isgrounded && !NoJet)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
+            float mouseY = -Input.GetAxis("Mouse Y") * lookSpeed;
+
+            // Rotate the player horizontally
+
+            transform.Rotate(Vector3.up * mouseX);
+
+            // Rotate the player camera vertically
+            rotationX += mouseY;
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         }
         else
         {
-            rigid.velocity += Vector3.Normalize(vec) * Time.deltaTime * grav;
-            rotGround(vec);
+            // Rotate the player and camera based on mouse input
+            float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
+            float mouseY = -Input.GetAxis("Mouse Y") * lookSpeed;
+
+            transform.Rotate(Vector3.up * mouseX);
+
+            rotationX += mouseY;
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         }
     }
 
-    private void rotGround(Vector3 vec)
+    Vector3 GetInputDirection(bool grnd)
     {
+        Vector3 inputDirection = Vector3.zero;
+
+        if (Input.GetKey("w"))
+        {
+            inputDirection += transform.forward;
+        }
+        if (Input.GetKey("a"))
+        {
+            inputDirection -= transform.right;
+        }
+        if (Input.GetKey("s"))
+        {
+            inputDirection -= transform.forward;
+        }
+        if (Input.GetKey("d"))
+        {
+            inputDirection += transform.right;
+        }
+        if (!grnd)
+        {
+
+            if (Input.GetKey("space"))
+            {
+                inputDirection += transform.up;
+            }
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                inputDirection -= transform.up;
+            }
+        }
+        return Vector3.Normalize(inputDirection);
+    }
+
+    public void rotGround(Vector3 vec)
+    {
+        // Tested
         Quaternion orientation = Quaternion.FromToRotation(-transform.up, vec) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, orientation, gravityRotation * Time.deltaTime);
+        underGrav = true;
     }
 
     public void leaveGrav()
     {
+        // Tested
         transform.rotation = playerCamera.transform.rotation;
         playerCamera.transform.localRotation = Quaternion.identity;
     }
