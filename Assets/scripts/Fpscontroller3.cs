@@ -74,7 +74,7 @@ public class Fpscontroller3 : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<Fpscontroller3>();
+                instance = FindFirstObjectByType<Fpscontroller3>();
             }
 
             return instance;

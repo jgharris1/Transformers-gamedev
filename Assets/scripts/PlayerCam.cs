@@ -24,7 +24,7 @@ public class PlayerCam : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<PlayerCam>();
+                instance = FindFirstObjectByType<PlayerCam>();
             }
 
             return instance;
