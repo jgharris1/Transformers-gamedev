@@ -27,7 +27,7 @@ public class Keycard : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Get the fpscontroller2 component from the player
-            fpscontroller2 playerController = other.GetComponent<fpscontroller2>();
+            Fpscontroller3 playerController = other.GetComponent<Fpscontroller3>();
 
             // If the playerController is not null, update hasKeycard
             if (playerController != null)
