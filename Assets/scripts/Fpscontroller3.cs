@@ -270,8 +270,8 @@ public class Fpscontroller3 : MonoBehaviour
     public void rotGround(Vector3 vec,bool gravitytype = true)
     {
         // Tested
-        Quaternion orientation = Quaternion.FromToRotation(-transform.up, vec) * transform.rotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, orientation, gravityRotation * Time.deltaTime);
+        Quaternion orientation2 = Quaternion.FromToRotation(-transform.up, vec) * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, orientation2, gravityRotation * Time.deltaTime);
         if(gravitytype == true){
             lowGrav = true;
         }
