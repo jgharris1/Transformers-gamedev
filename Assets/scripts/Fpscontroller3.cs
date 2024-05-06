@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.Rendering;
 using TMPro;
+//for scene reset
+using UnityEngine.SceneManagement;
 
 public class Fpscontroller3 : MonoBehaviour
 {   
 
     [Header("Gravity Movement")]
     public float moveSpeed;
-
     public float groundDrag;
 
     public float jumpForce;
@@ -41,7 +42,7 @@ public class Fpscontroller3 : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode DescendKey = KeyCode.LeftShift;
-
+    public KeyCode Reset = KeyCode.R;
     public KeyCode PanLeft = KeyCode.Q;
     public KeyCode PanRight = KeyCode.E;
 
@@ -52,6 +53,7 @@ public class Fpscontroller3 : MonoBehaviour
 
     [Header("Other")]
     public bool hasKeycard = false;
+    public bool speedLimit = true;
     public bool teleporterReached = false;
     public TextMeshProUGUI Keycardtext;
 
@@ -111,11 +113,14 @@ public class Fpscontroller3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, -orientation.up, playerHeight * 0.5f + 0.2f, whatIsGround);
 
+        Debug.Log(grounded);
         MyInput();
-        speedControl();
-
+        if (speedLimit)
+        {
+            speedControl();
+        }
         if(grounded){
             rb.drag = groundDrag;
         }else{
@@ -134,7 +139,7 @@ public class Fpscontroller3 : MonoBehaviour
             
         }
         if(hasKeycard == false){
-            Keycardtext.text = "Keycard needed";
+          //  Keycardtext.text = "Keycard needed";
 
         }
 
@@ -161,8 +166,11 @@ public class Fpscontroller3 : MonoBehaviour
         // Adjust input directions based on the player's orientation
         
 
-
-
+        //Scene reset 
+        if (Input.GetKey(Reset))
+        {    
+           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         //Pan
         if (Input.GetKey(PanLeft)&& noGrav)
         {    
@@ -270,8 +278,8 @@ public class Fpscontroller3 : MonoBehaviour
     public void rotGround(Vector3 vec,bool gravitytype = true)
     {
         // Tested
-        Quaternion orientation = Quaternion.FromToRotation(-transform.up, vec) * transform.rotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, orientation, gravityRotation * Time.deltaTime);
+        Quaternion orientation2 = Quaternion.FromToRotation(-transform.up, vec) * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, orientation2, gravityRotation * Time.deltaTime);
         if(gravitytype == true){
             lowGrav = true;
         }
