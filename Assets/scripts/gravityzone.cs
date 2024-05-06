@@ -52,7 +52,14 @@ public class gravitysphere : MonoBehaviour
             receiver = collision.transform.GetComponent<gravrecv>();
             if (receiver != null)
             {
+                if(alternatePower && isalternatePower)
+                {
                 receiver.applyGrav(sphere, transform.parent.transform.position, power1);
+                }
+                else
+                {
+                    receiver.applyGrav(sphere, transform.parent.transform.position, power1);
+                }
             }
             
         }
