@@ -228,6 +228,63 @@ Transform:
   - {fileID: 837633393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &296174005
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.64928055
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.309081
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.3921013
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124670930758391660, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295715451766062899, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: m_Name
+      value: Player prefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
 --- !u!1 &297667862
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,9 +926,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d60dfaa15d24d345b295c224dc90835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vec: {x: 0, y: 0, z: 0}
+  alternateGravity: 0
+  alternateTime: 0
+  vec1: {x: 0, y: 0, z: 0}
+  vec2: {x: 0, y: 0, z: 0}
   sphere: 1
-  power: -10
+  alternatePower: 0
+  power1: 0
+  power2: 0
 --- !u!135 &769349134
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -959,9 +1021,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d60dfaa15d24d345b295c224dc90835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vec: {x: 0, y: 0, z: 0}
+  alternateGravity: 0
+  alternateTime: 0
+  vec1: {x: 0, y: 0, z: 0}
+  vec2: {x: 0, y: 0, z: 0}
   sphere: 1
-  power: 10
+  alternatePower: 0
+  power1: 0
+  power2: 0
 --- !u!1 &837633392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,9 +1095,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d60dfaa15d24d345b295c224dc90835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vec: {x: 0, y: -1, z: 0}
+  alternateGravity: 0
+  alternateTime: 0
+  vec1: {x: 0, y: 0, z: 0}
+  vec2: {x: 0, y: 0, z: 0}
   sphere: 0
-  power: -5
+  alternatePower: 0
+  power1: 0
+  power2: 0
 --- !u!1 &877779540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,9 +1531,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d60dfaa15d24d345b295c224dc90835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vec: {x: 0, y: 1, z: 0}
+  alternateGravity: 0
+  alternateTime: 0
+  vec1: {x: 0, y: 0, z: 0}
+  vec2: {x: 0, y: 0, z: 0}
   sphere: 0
-  power: -5
+  alternatePower: 0
+  power1: 0
+  power2: 0
 --- !u!1 &1404725481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,6 +1825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 4279693000333016701, guid: 10eb6994032a0f54d9cc2bc58efbc7d8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1819,9 +1900,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d60dfaa15d24d345b295c224dc90835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vec: {x: 0, y: -1, z: 0}
+  alternateGravity: 0
+  alternateTime: 0
+  vec1: {x: 0, y: 0, z: 0}
+  vec2: {x: 0, y: 0, z: 0}
   sphere: 0
-  power: 5
+  alternatePower: 0
+  power1: 0
+  power2: 0
 --- !u!1 &2040117004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,3 +2037,4 @@ SceneRoots:
   - {fileID: 690493705}
   - {fileID: 763822577}
   - {fileID: 877779544}
+  - {fileID: 296174005}

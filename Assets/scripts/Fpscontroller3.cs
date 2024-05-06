@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.Rendering;
 using TMPro;
+//for scene reset
+using UnityEngine.SceneManagement;
 
 public class Fpscontroller3 : MonoBehaviour
 {   
@@ -41,7 +43,7 @@ public class Fpscontroller3 : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode DescendKey = KeyCode.LeftShift;
-
+    public KeyCode Reset = KeyCode.R;
     public KeyCode PanLeft = KeyCode.Q;
     public KeyCode PanRight = KeyCode.E;
 
@@ -134,7 +136,7 @@ public class Fpscontroller3 : MonoBehaviour
             
         }
         if(hasKeycard == false){
-            Keycardtext.text = "Keycard needed";
+          //  Keycardtext.text = "Keycard needed";
 
         }
 
@@ -161,8 +163,11 @@ public class Fpscontroller3 : MonoBehaviour
         // Adjust input directions based on the player's orientation
         
 
-
-
+        //Scene reset 
+        if (Input.GetKey(Reset))
+        {    
+           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         //Pan
         if (Input.GetKey(PanLeft)&& noGrav)
         {    
