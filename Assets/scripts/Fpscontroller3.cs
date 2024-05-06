@@ -134,7 +134,7 @@ public class Fpscontroller3 : MonoBehaviour
             
         }
         if(hasKeycard == false){
-            Keycardtext.text = "Keycard needed";
+          //  Keycardtext.text = "Keycard needed";
 
         }
 
