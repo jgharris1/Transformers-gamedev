@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 32ea4fce7231ca349a48b944302d257e, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2574072bb8599a4419553d772a119063, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -13945,9 +13945,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3214709267041408156, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: pullGrappleStrength
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3295715451766062899, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
       propertyPath: m_Name
       value: Player prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160179117851659809, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: speedLimit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160179117851659809, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: gravityRotation
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
