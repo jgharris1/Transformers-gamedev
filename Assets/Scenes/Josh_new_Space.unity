@@ -4154,6 +4154,10 @@ PrefabInstance:
       propertyPath: lowgravSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9160179117851659809, guid: c4a58033d74676e4891740a9adfdac2d, type: 3}
+      propertyPath: gravityRotation
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
