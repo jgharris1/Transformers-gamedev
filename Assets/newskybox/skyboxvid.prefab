@@ -45,7 +45,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138635201356649937}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 054b98074273cdc48a330d6880ef5f97, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 671fca7ee704f7842a760bee32f35449, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -81,7 +81,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138635201356649937}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 9f1191fd53940a347a3c62641b3fe1aa, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 8df73a5b7837916449b479dc97c3bb25, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -117,7 +117,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138635201356649937}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 6380bc431f6938c45a5d3c4c9f994ea0, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 4a9c595a27985f344b43b0c249a481a2, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -153,7 +153,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138635201356649937}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 31c7817acbba65041a9c346e3fe83c10, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 4b0999bb5953c6f43b49ef535e4e742b, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -189,7 +189,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138635201356649937}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: d4837059292ae5a4caccf93925f4fe04, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 538bd01dbe402ac43bfb29bb805c22a2, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -225,7 +225,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138635201356649937}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 37540876ef14ad84889052f20ed19c24, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 462bb09e81f696e4aa5838ca66e5dc0d, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
