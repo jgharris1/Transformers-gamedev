@@ -2405,6 +2405,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: skyboxvid
       objectReference: {fileID: 0}
+    - target: {fileID: 8138635201356649937, guid: 391da273ab4238f428b164ff139c819e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
