@@ -12,7 +12,7 @@ public class grapplescript : MonoBehaviour
     private Rigidbody targetrigid;
     private bool held = false;
     public Camera playerCamera;//boo
-    private fpscontroller2 parentbody;
+    private Fpscontroller3 parentbody;
     private Rigidbody parentrigid;
     private bool hitbool;
     private LineRenderer line;
@@ -24,7 +24,7 @@ public class grapplescript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        parentbody = GetComponent<fpscontroller2>();
+        parentbody = GetComponent<Fpscontroller3>();
         parentrigid = GetComponent<Rigidbody>();
         line = GetComponent<LineRenderer>();
     }
