@@ -19,29 +19,32 @@ public class itemcollection : MonoBehaviour
     }
     private void OnTriggerEnter(Collider trigger)
     {
-        //Debug.Log("Trigger Entered");
-        if (keycard.tag == "Green")
+        if (trigger.tag == "Player")
         {
-            KeycardBools.green = true;
-            hudcard.SetActive(true);
-            Debug.Log("You got green card");
-            Destroy(keycard.gameObject);
-        }
-        else if(keycard.tag == "Yellow")
-        {
-            KeycardBools.yellow = true;
-            hudcard.SetActive(true);
-            Debug.Log("You got yellow card");
-            Destroy(keycard.gameObject);
+            //Debug.Log("Trigger Entered");
+            if (keycard.tag == "Green")
+            {
+                KeycardBools.green = true;
+                hudcard.SetActive(true);
+                Debug.Log("You got green card");
+                Destroy(keycard.gameObject);
+            }
+            else if (keycard.tag == "Yellow")
+            {
+                KeycardBools.yellow = true;
+                hudcard.SetActive(true);
+                Debug.Log("You got yellow card");
+                Destroy(keycard.gameObject);
 
-        }
-        else if(keycard.tag == "Red")
-        {
+            }
+            else if (keycard.tag == "Red")
+            {
 
-            KeycardBools.red = true;
-            hudcard.SetActive(true);
-            Debug.Log("You got red card");
-            Destroy(keycard.gameObject);
-        }
-    }//end on trigger enter
+                KeycardBools.red = true;
+                hudcard.SetActive(true);
+                Debug.Log("You got red card");
+                Destroy(keycard.gameObject);
+            }
+        }//end on trigger enter
+    }
 }
