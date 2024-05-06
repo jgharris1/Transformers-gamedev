@@ -12,7 +12,6 @@ public class Fpscontroller3 : MonoBehaviour
 
     [Header("Gravity Movement")]
     public float moveSpeed;
-
     public float groundDrag;
 
     public float jumpForce;
@@ -54,6 +53,7 @@ public class Fpscontroller3 : MonoBehaviour
 
     [Header("Other")]
     public bool hasKeycard = false;
+    public bool speedLimit = true;
     public bool teleporterReached = false;
     public TextMeshProUGUI Keycardtext;
 
@@ -113,11 +113,14 @@ public class Fpscontroller3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, -orientation.up, playerHeight * 0.5f + 0.2f, whatIsGround);
 
+        Debug.Log(grounded);
         MyInput();
-        speedControl();
-
+        if (speedLimit)
+        {
+            speedControl();
+        }
         if(grounded){
             rb.drag = groundDrag;
         }else{
