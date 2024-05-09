@@ -115,7 +115,7 @@ public class Fpscontroller3 : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, -orientation.up, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        Debug.Log(grounded);
+        //Debug.Log(grounded);
         MyInput();
         if (speedLimit)
         {

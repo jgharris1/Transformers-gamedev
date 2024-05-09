@@ -6,8 +6,11 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    public float sensX;
-    public float sensY;
+    public float sensX;// = 4f;
+    //public static float sensX = 4f;
+    public float sensY;// = 4f;
+
+    public float sensMultiplier = 100f;
 
     
     public Transform orientation;
@@ -41,8 +44,8 @@ public class PlayerCam : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
     }
 
 
@@ -55,10 +58,36 @@ public class PlayerCam : MonoBehaviour
 
     
     // Update is called once per frame
+    public void setSensX(float value)
+    {
+        sensX = value;
+    }
+    public void setSensY(float value)
+    {
+        sensY = value;
+    }
+    public string getSensX()
+    {
+        return sensX.ToString();
+    }
+    public string getSensY()
+    {
+        return sensY.ToString();
+    }
+    public float getFloatSensX()
+    {
+        return sensX;
+    }
+    public float getFloatSensY()
+    {
+        return sensY;
+    }
+    
+
     void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX * sensMultiplier;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY * sensMultiplier;
 
         yRotation += mouseX;
         xRotation -= mouseY;
